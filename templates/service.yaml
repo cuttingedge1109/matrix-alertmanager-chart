@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "matrix-alertmanager.fullname" . }}
+  labels:
+    {{- include "matrix-alertmanager.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "matrix-alertmanager.selectorLabels" . | nindent 4 }}
