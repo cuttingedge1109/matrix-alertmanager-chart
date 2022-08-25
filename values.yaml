@@ -15,24 +15,29 @@ nameOverride: ""
 fullnameOverride: ""
 
 config:
+  # -- App listen port
   app_port: 3000
+  # -- Secret key for the webhook events
   app_alertmanager_secret: <secret key for the webhook events>
   matrix_homeserver_url: https://matrix.org/
-  # format: ${RECEIVER1}/${ROOM_ID1}|${RECEIVER2}/${ROOM_ID2}
+  # -- Matrix room list receiving alerts.
+  # Format: ${RECEIVER1}/${ROOM_ID1}|${RECEIVER2}/${ROOM_ID2}.
   # ${RECEIVER} should be same in the alertmanager config.
   matrix_rooms: receiver1/!abcdefgh:homeserver.tld|receiver2/!qwerty:homeserver.tld
+  # -- Token of the alertmanager user on matrix
   matrix_token: <token from the alertmanager user on matrix>
+  # -- ID of the alertmanager user on matrix
   matrix_user: "@alertmanager:homeserver.tld"
-  # Set this to 1 to make firing alerts do a `@room` mention.
+  # -- Set this to 1 to make firing alerts do a `@room` mention.
   # NOTE! Bot should also have enough power in the room for this to be useful.
   mention_room: 0
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
+  # -- The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
